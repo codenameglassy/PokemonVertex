@@ -1,0 +1,304 @@
+#RequireAdmin
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_UseUpx=y
+#AutoIt3Wrapper_Run_Tidy=y
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+
+AutoItSetOption("MouseClickDownDelay", 1000)
+
+
+HotKeySet('f', "ExitProgram")
+
+Func ExitProgram()
+	Exit
+EndFunc   ;==>ExitProgram
+;WinActivate('Pokémon Vortex - Battle - Google Chrome')
+WinActivate('Pokémon Vortex - Explore World - Google Chrome')
+
+Sleep(300)
+
+Global $pix = False
+Global $clickmap = False
+; Define screen resolution
+Global $Width = 1360
+Global $Height = 768
+Global $BitsPerPixel = 32
+Global $RefreshRate = 60
+
+; Define and set resolution
+;_ChangeScreenRes(1360, 768, 32, 60)
+
+;Sleep(5000) ;5sec delay
+While (1)
+
+	ControlSend('Pokémon Vortex - Battle - Google Chrome', '', '', 'd')
+	Sleep(2000)
+	BE()
+	CB()
+	ClickMAP()
+	ControlSend('Pokémon Vortex - Battle - Google Chrome', '', '', 'd')
+	Sleep(2000)
+	BE()
+	CB()
+	ClickMAP()
+	ControlSend('Pokémon Vortex - Battle - Google Chrome', '', '', 'd')
+	Sleep(2000)
+	BE()
+	CB()
+	ClickMAP()
+	ControlSend('Pokémon Vortex - Battle - Google Chrome', '', '', 'a')
+	Sleep(2000)
+	BE()
+	CB()
+	ClickMAP()
+	ControlSend('Pokémon Vortex - Battle - Google Chrome', '', '', 'a')
+	Sleep(2000)
+	BE()
+	CB()
+	ClickMAP()
+	ControlSend('Pokémon Vortex - Battle - Google Chrome', '', '', 'a')
+	Sleep(2000)
+	BE()
+	CB()
+	ClickMAP()
+
+
+WEnd
+
+
+
+
+;While (1)
+;Move in Grass!
+;
+
+
+
+
+
+
+
+;is BattelEncounter?
+
+;Click Battel!
+
+
+
+
+
+;$needattack = True
+;$hpbar = PixelSearch(251,265, 257,271, 0xA80101, 5)
+;if (@error) Then
+;MouseClick('left',437, 538,1,5) ;click on ember
+;sleep(3000)
+;MouseClick('left',452, 629,1,5) ;click on attack
+;sleep(3000)
+;MouseClick('left',449, 599,1,5) ;click on continue
+;While($needattack)
+;$hpbar2 = PixelSearch(251,265, 257,271, 0xA80101, 5)
+;if not(@error) Then
+;	$needattack = False
+;EndIf
+;WEnd
+;Else
+;	$needattack=False
+;EndIf
+
+;WEnd
+
+;WinWait('Pokémon Vortex - Explore World - Google Chrome')
+;WinActivate('Pokémon Vortex - Explore World - Google Chrome')
+;WinWait('Pokémon Vortex - Battle - Google Chrome')
+;WinActivate('Pokémon Vortex - Battle - Google Chrome')
+
+Func ClickMAP()
+	$clickmap = True
+	WinActivate('Pokémon Vortex - Battle - Google Chrome')
+	$clickmap = PixelSearch(176, 336, 249, 388, 0x3C763D, 10)
+	If Not (@error) Then
+		;MouseMove(556, 218, 5)
+		;Sleep(250)
+		;MouseMove(511, 300, 5)
+		;Sleep(250)
+		;MouseClick('left', 511, 300, 1, 5)
+		ControlClick('Pokémon Vortex - Battle - Google Chrome', '', '', 'left', 1, 497, 338)
+
+	EndIf
+
+EndFunc   ;==>ClickMAP
+
+Func BE() ;is BattelEncounter?
+	$BattelEncounter = PixelSearch(849, 625, 851, 627, 0xC70101, 20)
+	If Not (@error) Then
+		;MouseClick('left', 849, 632, 1, 5)
+		;Sleep(3000)
+		;MouseClickDrag('left', 1352, 238, 1347, 308, 2)
+		;Sleep(1000)
+		;MouseClick('left', 587, 652, 1, 5)
+		;Sleep(3000)
+		ControlClick('Pokémon Vortex - Explore World - Google Chrome', '', '', 'left', 1, 857, 645)
+		Sleep(3000)
+		ControlSend('Pokémon Vortex - Battle - Google Chrome', '', '', '{PGDN}')
+		Sleep(3000)
+		ControlClick('Pokémon Vortex - Battle - Google Chrome', '', '', 'left', 1, 583, 471)
+		Sleep(3000)
+
+		$BattelEncounter = True
+
+		While ($BattelEncounter)
+			$isBattelEncounter = PixelSearch(849, 625, 851, 627, 0xC70101, 20)
+			If Not (@error) Then
+			Else
+				$BattelEncounter = False
+			EndIf
+		WEnd
+	EndIf
+EndFunc   ;==>BE
+
+Func CB() ;Click Battel!
+	$B2 = PixelSearch(536, 474, 571, 490, 0xFF0000, 10)
+	If Not (@error) Then
+		;MouseClick('Primary',437, 538,1,5) ;click on ember
+		;sleep(4000)
+		;MouseMove(452,629,5)
+		;sleep(250)
+		;MouseClick('Primary',420, 625,1,5) ;click on attack
+		;sleep(4000)
+		;$pix = True
+		;$pix = PixelSearch(385, 579, 494, 681, 0xC40101, 20)                ;click on continue
+
+		;If Not (@error) Then
+		;Sleep(500)
+		;MouseClick('Left', $pix[0], $pix[1], 1, 2)
+		;EndIf
+
+		$B2 = True
+
+		While ($B2)
+			$isB2 = PixelSearch(536, 474, 571, 490, 0xFF0000, 10)
+			If Not (@error) Then
+				;MouseClick('Primary',437, 538,2,50) ;click on ember
+				;sleep(4000)
+
+				ControlClick('Pokémon Vortex - Battle - Google Chrome', '', '', 'left', 1, 442, 635) ;click on attack
+				Sleep(3000)
+				ControlClick('Pokémon Vortex - Battle - Google Chrome', '', '', 'left', 1, 439, 653) ;click on continue
+				Sleep(1000)
+				ControlClick('Pokémon Vortex - Battle - Google Chrome', '', '', 'left', 1, 440, 627) ;click on continue
+				Sleep(1000)
+				ControlClick('Pokémon Vortex - Battle - Google Chrome', '', '', 'left', 1, 444, 673) ;click on continue
+				Sleep(1000)
+
+				;$pix = True
+				;$pix = PixelSearch(263, 648, 620, 732, 0xC30101, 50)      ;click on continue
+
+				;If Not (@error) Then
+
+				;ControlClick('Pokémon Vortex - Battle - Google Chrome', '', '', 'left', 1, $pix[0], $pix[1])
+				;EndIf
+			Else
+				$BE = False
+				For $count = 1 To 1
+					ClickMAP()
+				Next
+				Move()
+
+			EndIf
+		WEnd
+	EndIf
+EndFunc   ;==>CB
+
+Func Move()
+	Send('d')
+	Sleep(2000)
+	BE()
+	CB()
+
+	Send('d')
+	Sleep(2000)
+	BE()
+	CB()
+
+	Send('a')
+	Sleep(2000)
+	BE()
+	CB()
+
+	Send('a')
+	Sleep(2000)
+	BE()
+	CB()
+EndFunc   ;==>Move
+
+
+
+; Define screen resolution
+Global $Width = 1360
+Global $Height = 768
+Global $BitsPerPixel = 32
+Global $RefreshRate = 60
+
+; Define and set resolution
+_ChangeScreenRes(1360, 768, 32, 60)
+
+Func _ChangeScreenRes($i_Width = @DesktopWidth, $i_Height = @DesktopHeight, $i_BitsPP = @DesktopDepth, $i_RefreshRate = @DesktopRefresh)
+	Local Const $DM_PELSWIDTH = 0x00080000
+	Local Const $DM_PELSHEIGHT = 0x00100000
+	Local Const $DM_BITSPERPEL = 0x00040000
+	Local Const $DM_DISPLAYFREQUENCY = 0x00400000
+	Local Const $CDS_TEST = 0x00000002
+	Local Const $CDS_UPDATEREGISTRY = 0x00000001
+	Local Const $DISP_CHANGE_RESTART = 1
+	Local Const $DISP_CHANGE_SUCCESSFUL = 0
+	Local Const $HWND_BROADCAST = 0xffff
+	Local Const $WM_DISPLAYCHANGE = 0x007E
+	If $i_Width = "" Or $i_Width = -1 Then $i_Width = @DesktopWidth ; default to current setting
+	If $i_Height = "" Or $i_Height = -1 Then $i_Height = @DesktopHeight ; default to current setting
+	If $i_BitsPP = "" Or $i_BitsPP = -1 Then $i_BitsPP = @DesktopDepth ; default to current setting
+	If $i_RefreshRate = "" Or $i_RefreshRate = -1 Then $i_RefreshRate = @DesktopRefresh ; default to current setting
+	Local $DEVMODE = DllStructCreate("byte[32];int[10];byte[32];int[6]")
+	Local $B = DllCall("user32.dll", "int", "EnumDisplaySettings", "ptr", 0, "long", 0, "ptr", DllStructGetPtr($DEVMODE))
+	If @error Then
+		$B = 0
+		SetError(1)
+		Return $B
+	Else
+		$B = $B[0]
+	EndIf
+	If $B <> 0 Then
+		DllStructSetData($DEVMODE, 2, BitOR($DM_PELSWIDTH, $DM_PELSHEIGHT, $DM_BITSPERPEL, $DM_DISPLAYFREQUENCY), 5)
+		DllStructSetData($DEVMODE, 4, $i_Width, 2)
+		DllStructSetData($DEVMODE, 4, $i_Height, 3)
+		DllStructSetData($DEVMODE, 4, $i_BitsPP, 1)
+		DllStructSetData($DEVMODE, 4, $i_RefreshRate, 5)
+		$B = DllCall("user32.dll", "int", "ChangeDisplaySettings", "ptr", DllStructGetPtr($DEVMODE), "int", $CDS_TEST)
+		If @error Then
+			$B = -1
+		Else
+			$B = $B[0]
+		EndIf
+		Select
+			Case $B = $DISP_CHANGE_RESTART
+				$DEVMODE = ""
+				Return 2
+			Case $B = $DISP_CHANGE_SUCCESSFUL
+				DllCall("user32.dll", "int", "ChangeDisplaySettings", "ptr", DllStructGetPtr($DEVMODE), "int", $CDS_UPDATEREGISTRY)
+				DllCall("user32.dll", "int", "SendMessage", "hwnd", $HWND_BROADCAST, "int", $WM_DISPLAYCHANGE, _
+						"int", $i_BitsPP, "int", $i_Height * 2 ^ 16 + $i_Width)
+				$DEVMODE = ""
+				Return 1
+			Case Else
+				$DEVMODE = ""
+				SetError(1)
+				Return $B
+		EndSelect
+	EndIf
+
+EndFunc   ;==>_ChangeScreenRes
+
+
+Func attack()
+	ControlClick('Pokémon Vortex - Explore World - Google Chrome', '', '', 'left', 11, 166, 58)
+
+EndFunc   ;==>attack
+
